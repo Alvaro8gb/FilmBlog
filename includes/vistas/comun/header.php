@@ -3,11 +3,11 @@
 
 use es\abd\Aplicacion;
 require_once __DIR__.'/../helpers/utils.php';
+$app = Aplicacion::getInstancia();
 
 
-function mostrarSaludo(){
+function usuarioInfo($app){
     $html = '';
-    $app = Aplicacion::getInstancia();
     if ($app->usuarioLogueado()) {
         $logoutUrl =  $app->resuelve('/logout.php');
         $html = <<<EOS
@@ -36,48 +36,37 @@ function mostrarSaludo(){
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#">LIBROS</a>
+                  <a class="navbar-brand" href="#"> <?=$app->getName()?></a>
                </div>
                <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
                      <li class="active">
                         <a href="index.php">Home</a>
                      </li>
-                     <li>
-                        <a href="contacto.php">Contact</a>
-                     </li>
                      <li class="dropdown">
-                        <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Menu
+                        <a href="index.php" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+                           Films
                         <span class="caret"></span>
                         </a>
                         <ul class="dropdown-menu">
                            <li>
-                              <a href="index.php#historia">Historia de la electronica</a>
-                           </li>
-                           <li>
-                              <a href="index.php#introduccion">Introducción a los semiconductores</a>
-                           </li>
-                           <li>
-                              <a href="index.php#union">Unión p-n</a>
-                           </li>
-                           <li>
-                              <a href="index.php#diodo">El diodo como elemento de un circuito</a>
+                              <a href="index.php#historia">Buscador</a>
                            </li>
                            <li role="separator" class="divider"></li>
-                           <li class="dropdown-header">Dispositivos optoelectrónicos</li>
+                           <li class="dropdown-header">Categorias</li>
                            <li>
-                              <a href="index.php#luz">Absorción y emisión de luz por la materia</a>
+                              <a href="index.php#luz">Accion</a>
                            </li>
                            <li>
-                              <a href="index.php#celula">La célula solar</a>
-                           </li>
-                           <li>
-                              <a href="index.php#emisor">El diodo emisor de luz</a>
+                              <a href="index.php#celula">Miedo</a>
                            </li>
                         </ul>
+                        <li>
+                        <a href="contacto.php">Contact</a>
+                        </li>
                      </li>
                      <li>
-                        <?=mostrarSaludo();?>
+                        <?=usuarioInfo($app);?>
                         
                      </li>
                   </ul>

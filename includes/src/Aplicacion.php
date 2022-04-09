@@ -8,6 +8,7 @@ namespace es\abd;
 use es\abd\usuarios\Usuario;
 
 class Aplicacion{
+    const APP_NAME = "Fav-Films";
 	const ATRIBUTOS_PETICION = 'attsPeticion';
 
 	private static $instancia;
@@ -321,5 +322,9 @@ class Aplicacion{
             }
         }
         return $query;
+    }
+
+    public static function getName(){
+        return self::APP_NAME;
     }
 }

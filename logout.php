@@ -8,4 +8,11 @@ if (strtoupper($_SERVER['REQUEST_METHOD']) !== 'POST') {
 }
 
 $formLogout = new \es\abd\usuarios\FormularioLogout();
-$formLogout->gestiona();
+$htmlFormLogout = $formLogout->gestiona();
+
+$contenidoPrincipal = $htmlFormLogout;
+
+$css = link_css($app->resuelve(RUTA_CSS.'formulario.css'));
+
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css' => $css];
+$app->generaVista('/plantillas/plantilla.php', $params);
