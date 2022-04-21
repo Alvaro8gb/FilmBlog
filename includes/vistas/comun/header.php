@@ -50,7 +50,7 @@ function usuarioInfo($app){
                         </a>
                         <ul class="dropdown-menu">
                            <li>
-                              <a href="index.php#historia">Buscador</a>
+                              <a href="peliculas.php">Todas</a>
                            </li>
                            <li role="separator" class="divider"></li>
                            <li class="dropdown-header">Categorias</li>

@@ -23,6 +23,10 @@ footer{
 	text-align: left;
 }
 
+header{
+	margin: 1%;
+}
+
 main{
 	margin-bottom:1%;
 }

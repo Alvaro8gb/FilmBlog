@@ -17,9 +17,9 @@ set_error_handler(function($errno, $errstr, $errfile, $errline){
  */
 
 define('BD_HOST', 'localhost');
-define('BD_NAME', 'chestnutgames');
-define('BD_USER', 'chestnut');
-define('BD_PASS', 'chestnut');
+define('BD_NAME', 'practica_abd');
+define('BD_USER', 'practica_abd');
+define('BD_PASS', 'practica_abd');
 
 /**
  * Parámetros de configuración utilizados para generar las URLs y las rutas a ficheros en la aplicación

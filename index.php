@@ -7,5 +7,5 @@ ob_start();
 require __DIR__.'/static/carrousel.html';
 $contenidoPrincipal = ob_get_clean();
 
-$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css'=> $css];
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
 $app->generaVista('/plantillas/plantilla.php', $params);
