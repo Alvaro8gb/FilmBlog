@@ -11,12 +11,12 @@ table{
 }
 
 footer{
-	margin: auto;
 	position: relative;
 	text-align: left;
+	clear:both;
 	color:#f0f0f0;
 	padding: 40px;
-	left: 0;
+	margin:0;
 	bottom: 0;
 	min-height: 40px;
 	width: 100%;
@@ -32,12 +32,20 @@ header{
 }
 
 main{
-	margin-bottom:1%;
+	margin:1%;
+	padding:0;
+	text-align: justify;
+}
+
+html{
+	margin:0;
+	padding:0;
 }
 body {
+	padding-top:50px;
 	background-color: white;
 	margin:0;
-    padding:0;
+	position:relative;
 }
 
 .formulario {

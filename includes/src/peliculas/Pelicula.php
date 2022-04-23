@@ -7,13 +7,14 @@ class Pelicula{
     private $titulo;
     private $director;
     private $fechaEstreno;
+    private $descripcion;
     private $imagen;
     private $categoria;
 
-    public function __construct($titulo, $director, $fechaEstreno, $imagen, $categoria){
-        $this->nombre = $titulo;
-        $this->autor = $director;
-        $this->fechaEstreno = $fechaEstreno;
+    public function __construct($titulo, $director, $descripcion, $imagen, $categoria){
+        $this->titulo = $titulo;
+        $this->director = $director;
+        $this->descripcion = $descripcion;
         $this->imagen = $imagen;
         $this->categoria = $categoria;
 
@@ -29,6 +30,9 @@ class Pelicula{
 
     public function getFechaEstreno(){
         return $this->fechaEstreno;
+    }
+    public function getDescripcion(){
+        return $this->descripcion;
     }
 
     public function getImagen(){
