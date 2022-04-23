@@ -1,7 +1,6 @@
 <?php
 
 namespace es\abd\peliculas;
-use es\abd\Aplicacion;
 use es\abd\Lista;
 
 class Peliculas extends Lista{
@@ -9,17 +8,17 @@ class Peliculas extends Lista{
 
     public function __construct(){
         parent::__construct(self::TABLE);
-        $app = Aplicacion::getInstancia();
     }
 
     protected function crearElem($fila){
         return new Pelicula($fila["titulo"],$fila["director"],$fila["descripcion"],$fila["imagen"],$fila["categoria"]);
     }
 
-    protected function mostrarElems(){
+    private function mostrarPeliculas($peliculas){
+
         $html = '<div class="grid-container">';
         
-        foreach($this->lista as $id => $pelicula){
+        foreach($peliculas as $id => $pelicula){
 
             $imagen = $pelicula->getImagen();
             $titulo = "imagen_".$pelicula->getTitulo();
@@ -31,6 +30,26 @@ class Peliculas extends Lista{
 
 
         return $html;
+
+    }
+
+    protected function mostrarElems(){
+        return $this->mostrarPeliculas($this->lista);
+        
+    }
+
+    public function mostrar_por_categoria($categoria){
+        
+        $peliculas_categoria = array();
+
+        foreach($this->lista as $id => $pelicula){
+            
+           if($pelicula->getCategoria() == $categoria){
+            $peliculas_categoria[$id] = $pelicula;
+           }
+        }
+
+        return $this->mostrarPeliculas($peliculas_categoria);
     }
 
     protected function mostrarElem($datos){

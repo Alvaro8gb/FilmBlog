@@ -12,9 +12,12 @@ table{
 
 footer{
 	margin: auto;
+	position: relative;
+	text-align: left;
 	color:#f0f0f0;
 	padding: 40px;
-	float: left;
+	left: 0;
+	bottom: 0;
 	min-height: 40px;
 	width: 100%;
 	background-color: rgb(80, 77, 77);
@@ -24,6 +27,7 @@ footer{
 }
 
 header{
+	position:relative;
 	margin: 1%;
 }
 
@@ -32,6 +36,8 @@ main{
 }
 body {
 	background-color: white;
+	margin:0;
+    padding:0;
 }
 
 .formulario {

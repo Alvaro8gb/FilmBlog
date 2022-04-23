@@ -2,8 +2,18 @@
 <?php
 
 use es\abd\Aplicacion;
+use es\abd\peliculas\Categorias;
+
 require_once __DIR__.'/../helpers/utils.php';
 $app = Aplicacion::getInstancia();
+
+try{
+   $categorias = new Categorias();
+   $menu_categorias = $categorias->mostrar_categorias();
+   $usuario_info = usuarioInfo($app);
+}catch(\Exception $e){
+   $app->paginaError(501,'Error',"Error en header: ".$e->getMessage(),$e->getTrace());
+}
 
 
 function usuarioInfo($app){
@@ -24,6 +34,7 @@ function usuarioInfo($app){
 
     return $html;
 }
+
 
 ?>
 
@@ -54,19 +65,14 @@ function usuarioInfo($app){
                            </li>
                            <li role="separator" class="divider"></li>
                            <li class="dropdown-header">Categorias</li>
-                           <li>
-                              <a href="index.php#luz">Accion</a>
-                           </li>
-                           <li>
-                              <a href="index.php#celula">Miedo</a>
-                           </li>
+                           <?= $menu_categorias ?>
                         </ul>
                         <li>
                         <a href="contacto.php">Contact</a>
                         </li>
                      </li>
                      <li>
-                        <?=usuarioInfo($app);?>
+                        <?= $usuario_info ?>
                         
                      </li>
                   </ul>

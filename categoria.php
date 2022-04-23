@@ -3,17 +3,17 @@
 require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
-$tituloPagina = 'Films';
+$categoria = $_GET["categoria"];
+$tituloPagina = $categoria;
+
 
 $css = link_css($app->resuelve(RUTA_CSS.'peliculas.css'));
 
-try{
-    $peliculas = new \es\abd\peliculas\Peliculas();
-    $contenidoPrincipal = $peliculas->gestiona();;      
+$peliculas = new \es\abd\peliculas\Peliculas();
 
-}catch(\Exception $e){
-    $app->paginaError(501,'Error',"Error en peliculas: ".$e->getMessage(),$e->getTrace());
-}
+$contenidoPrincipal = "<h2> $categoria </h2> ";
+
+$contenidoPrincipal .= $peliculas->mostrar_por_categoria($categoria);
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css' => $css];
 $app->generaVista('/plantillas/plantilla.php', $params);
