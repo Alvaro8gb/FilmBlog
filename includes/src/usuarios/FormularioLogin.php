@@ -12,7 +12,7 @@ class FormularioLogin extends Formulario{
     
     protected function generaCamposFormulario(&$datos){
         // Se reutiliza el nombre de usuario introducido previamente o se deja en blanco
-        $nombreUsuario =$datos['nombreUsuario'] ?? '';
+        $nombreUsuario = $datos['nombreUsuario'] ?? '';
 
         // Se generan los mensajes de error si existen.
         $htmlErroresGlobales = self::generaListaErroresGlobales($this->errores);
@@ -59,9 +59,11 @@ class FormularioLogin extends Formulario{
         if ( ! $password || empty($password) ) {
             $this->errores['password'] = 'La contraseña no puede estar vacía.';
         }
+    
         
         if (count($this->errores) === 0) {
-            $usuario = Usuario::login($nombreUsuario, $password, null);
+            
+            $usuario = Usuario::login($nombreUsuario,null, $password);
         
             if (!$usuario) {
                 $this->errores[] = "El usuario o la contraseña no coinciden";

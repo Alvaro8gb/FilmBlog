@@ -192,8 +192,7 @@ abstract class Formulario{
      *   </li>
      * </ul>
      */
-    public function gestiona()
-{
+    public function gestiona(){
         $datos = &$_POST;
         if (strcasecmp('GET', $this->method) == 0) {
             $datos = &$_GET;

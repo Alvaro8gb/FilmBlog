@@ -8,7 +8,6 @@ namespace es\abd;
 use es\abd\usuarios\Usuario;
 
 class Aplicacion{
-    const APP_NAME = "Fav-Films";
 	const ATRIBUTOS_PETICION = 'attsPeticion';
 
 	private static $instancia;
@@ -79,8 +78,7 @@ class Aplicacion{
 	 * 
 	 * @param array $bdDatosConexion datos de configuración de la BD
 	 */
-	public function init($bdDatosConexion, $rutaApp = '/', $dirInstalacion = __DIR__)
-    {
+	public function init($bdDatosConexion, $rutaApp = '/', $dirInstalacion = __DIR__){
         if (!$this->inicializada) {
             $this->bdDatosConexion = $bdDatosConexion;
 
@@ -199,12 +197,25 @@ class Aplicacion{
         $this->doIncludeInternal($rutaVista, $params);
     }
 
+    // return bool (true | false)
+    public function show_advert(){
+        
+        // Muestra publicidad con un 20% de probabilidad si el usuario no es admin o si no está logueado en la página
+        if( !$this->usuarioLogueado() || !$this->esAdmin() ) {
+            $prob = rand(0,10);
+
+            if($prob < 2) 
+                return true;
+        }
+        return false;
+    }
+
     public function login(Usuario $user){
         $this->compruebaInstanciaInicializada();
         $_SESSION['login'] = true;
         $_SESSION['nombre'] = $user->getNombreUsuario();
         $_SESSION['idUsuario'] = $user->getId();
-        $_SESSION['roles'] = $user->getRoles();
+        $_SESSION['rol'] = $user->getRol();
     }
 
     public function logout(){
@@ -213,7 +224,7 @@ class Aplicacion{
         unset($_SESSION['login']);
         unset($_SESSION['nombre']);
         unset($_SESSION['idUsuario']);
-        unset($_SESSION['roles']);
+        unset($_SESSION['rol']);
 
         session_destroy();
         session_start();
@@ -236,12 +247,12 @@ class Aplicacion{
 
     public function esAdmin(){
         $this->compruebaInstanciaInicializada();
-        return $this->usuarioLogueado() && (array_search(Usuario::ADMIN_ROLE, $_SESSION['roles']) !== false);
+        return $this->usuarioLogueado() && (Usuario::ADMIN_ROLE == $_SESSION['rol']);
     }
 
     public function tieneRol($rol){
         $this->compruebaInstanciaInicializada();
-        return $this->usuarioLogueado() && (array_search($rol, $_SESSION['roles']) !== false);
+        return $this->usuarioLogueado() && ($rol ==  $_SESSION['rol']);
     }
 
     public function paginaError($codigoRespuesta, $tituloPagina, $mensajeError, $explicacion = ''){
@@ -322,9 +333,5 @@ class Aplicacion{
             }
         }
         return $query;
-    }
-
-    public static function getName(){
-        return self::APP_NAME;
     }
 }

@@ -9,8 +9,8 @@ class FormularioLogout extends Formulario
 {
     public function __construct() {
         parent::__construct('formLogout', [
-            'action' =>  Aplicacion::getInstancia()->resuelve('/logout.php'),
-            'urlRedireccion' => Aplicacion::getInstancia()->resuelve('/cierre.php')]);
+            'urlRedireccion' => Aplicacion::getInstancia()->resuelve('/index.php')
+        ]);
     }
 
     protected function generaCamposFormulario(&$datos){
@@ -25,9 +25,7 @@ class FormularioLogout extends Formulario
         return $camposFormulario;
     }
 
-    /**
-     * Procesa los datos del formulario.
-     */
+
     protected function procesaFormulario(&$datos){
         $app = Aplicacion::getInstancia();
         $app->logout();

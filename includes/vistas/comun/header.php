@@ -4,6 +4,8 @@
 use es\abd\Aplicacion;
 use es\abd\peliculas\Categorias;
 
+use es\abd\usuarios\FormularioLogout;
+
 require_once __DIR__.'/../helpers/utils.php';
 $app = Aplicacion::getInstancia();
 
@@ -19,10 +21,11 @@ try{
 function usuarioInfo($app){
     $html = '';
     if ($app->usuarioLogueado()) {
-        $logoutUrl =  $app->resuelve('/logout.php');
-        $html = <<<EOS
-        <li><a href="{$logoutUrl}">Logout</a> </li>
-      EOS;
+
+      $logoutUrl = $app->resuelve("/logout.php");
+      $html = <<<EOS
+      <li><a href="{$logoutUrl}">Logout</a> </li>
+    EOS;
     } else {
         $loginUrl = $app->resuelve('/login.php');
         $registroUrl = $app->resuelve('/registro.php');
@@ -47,7 +50,7 @@ function usuarioInfo($app){
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#"> <?=$app->getName()?></a>
+                  <a class="navbar-brand" href="#"> Fav-Films</a>
                </div>
                <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">

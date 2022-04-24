@@ -1,18 +1,17 @@
 <?php
 require_once __DIR__.'/includes/config.php';
-require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
+use es\abd\usuarios\FormularioLogout;
 
-if (strtoupper($_SERVER['REQUEST_METHOD']) !== 'POST') {
-    $app->redirige('/index.php');
-}
+$tituloPagina='Logout';
 
-$formLogout = new \es\abd\usuarios\FormularioLogout();
-$htmlFormLogout = $formLogout->gestiona();
+$nombreUsuario = $app->nombreUsuario();
 
-$contenidoPrincipal = $htmlFormLogout;
+$formLogout = new FormularioLogout();
+$htmlLogout = $formLogout->gestiona();
+$contenidoPrincipal = "<div> <p> Seguro que desea salir $nombreUsuario ? </p> $htmlLogout </div>";
 
-$css = link_css($app->resuelve(RUTA_CSS.'formulario.css'));
-
-$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal, 'css' => $css];
+$params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
 $app->generaVista('/plantillas/plantilla.php', $params);
+
+exit();

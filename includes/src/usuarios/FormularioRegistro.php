@@ -21,12 +21,10 @@ class FormularioRegistro extends Formulario{
         $erroresCampos = self::generaErroresCampos(['nombreUsuario', 'nombre', 'password', 'password2', 'correo'], $this->errores, 'span', array('class' => 'error'));
 
         $html = <<<EOF
-    
-        $htmlErroresGlobales
         <div class="login-page">
         <div class="form">
         <form class="login-form">
-            <legend class="log">Datos para el registro</legend>
+            <legend class="log">Datos para el registro</legend>{$htmlErroresGlobales}
             <div>
                 <label for="correo">Correo electrónico:</label>
                 <input id="correoUsuario" type="email" name="correoUsuario" value="$correoUsuario" placeholder="Introduzca correo electrónico"/>
@@ -62,8 +60,7 @@ class FormularioRegistro extends Formulario{
         return $html;
     }
 
-    protected function procesaFormulario(&$datos)
-    {
+    protected function procesaFormulario(&$datos){
         $this->errores = [];
 
         $nombreUsuario = trim($datos['nombreUsuario'] ?? '');
@@ -97,19 +94,17 @@ class FormularioRegistro extends Formulario{
         }
 
         if (count($this->errores) === 0) {
-            $usuario = Usuario::buscaUsuario($nombreUsuario, $correoUsuario);
 	
-            if ($usuario) {
+            if ( Usuario::buscarUsuarioPorNombre($nombreUsuario)) {
                 $this->errores[] = "El usuario ya existe";
-                if($correoUsuario == $usuario->getCorreo()){
-                    $this->errores['correo'] = 'El correo ya existe';
-                }
+                $this->errores['nombreUsuario'] = 'El nombre de usuario ya existe';
 
-                if($nombreUsuario == $usuario->getNombre()){
-                    $this->errores['nombreUsuario'] = 'El nombre de usuario ya existe';
-                }
-            } else {
-                $usuario = Usuario::crea($nombreUsuario, $nombre, $password, $correoUsuario,Usuario::USER_ROLE);
+            }else if( Usuario::buscarUsuarioPorCorreo($correoUsuario)){
+                $this->errores[] = "El usuario ya existe";
+                $this->errores['correo'] = 'El correo ya existe';
+            }
+            else {
+                $usuario = Usuario::crea($nombreUsuario, $nombre, $password, $correoUsuario, Usuario::USER_ROLE);
                 $app = Aplicacion::getInstancia();
                 $app->login($usuario);
             }
