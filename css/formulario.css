@@ -1,6 +1,5 @@
 .login-page {
   width: 1000px;
-  padding: 8% 0 0;
   margin: auto;
 }
 
@@ -113,6 +112,7 @@ input.campos{
 }
 
 .log{
+  font-size: 15px;
   margin-left: 20%;
   margin-right: 20%;
   border-radius: 30px;

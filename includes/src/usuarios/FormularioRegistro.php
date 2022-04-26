@@ -24,7 +24,7 @@ class FormularioRegistro extends Formulario{
         <div class="login-page">
         <div class="form">
         <form class="login-form">
-            <legend class="log">Datos para el registro</legend>{$htmlErroresGlobales}
+            <div class="log">Datos para el registro</div>{$htmlErroresGlobales}
             <div>
                 <label for="correo">Correo electrónico:</label>
                 <input id="correoUsuario" type="email" name="correoUsuario" value="$correoUsuario" placeholder="Introduzca correo electrónico"/>

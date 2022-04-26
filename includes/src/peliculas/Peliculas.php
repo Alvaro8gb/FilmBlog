@@ -27,8 +27,7 @@ class Peliculas extends Lista{
         }
 
         $html.='</div>';
-
-
+        
         return $html;
 
     }

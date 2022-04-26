@@ -11,7 +11,7 @@ $css = link_css($app->resuelve(RUTA_CSS.'peliculas.css'));
 
 $peliculas = new \es\abd\peliculas\Peliculas();
 
-$contenidoPrincipal = "<h2> $categoria </h2> ";
+$contenidoPrincipal = "<h2 id='categoria'> $categoria </h2> ";
 
 $contenidoPrincipal .= $peliculas->mostrar_por_categoria($categoria);
 
