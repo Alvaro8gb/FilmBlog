@@ -7,6 +7,7 @@ position:absolute;
 height: 100%;
 width: 360 *4 px;
 margin-top: 40px;
+margin-bottom: 80px;
 }
 
 .grid-item {
@@ -39,6 +40,11 @@ border: 5px solid black;
     width: 350px;
 }
 
+.todoPelicula p{
+    text-align: left;
+    font-size: 15px;
+    margin: 10px;
+}
 
 .grid-item:hover{
     transform:scale(1.15);
@@ -54,10 +60,71 @@ border: 5px solid black;
     filter: brightness(30%);
 }
 
+.grid-item:hover label {
+
+    color: gray;
+}
+
+.grid-item:hover label:hover {
+
+    color: orange;
+}
+
+.grid-item:hover label:hover ~ label {
+    color: orange;
+  }
+
 .tabla{
     display: flex;
     justify-content: center;
 }
+
+#form {
+    width: 100%;
+    margin: 0 auto;
+    height: 100px;
+    position: absolute;
+    bottom: 0px;
+    left: 0px;
+  }
+  
+  #form p {
+    text-align: center;
+    bottom: 0px;
+    left: 0px;
+  }
+  
+  #form label {
+    font-size: 50px;
+    bottom: 0px;
+    left: 0px;
+  }
+  
+  input[type="radio"] {
+    display: none;
+    bottom: 0px;
+    left: 0px;
+  }
+  
+  label {
+    color: transparent;
+    bottom: 0px;
+    left: 0px;
+  }
+  
+  .clasificacion {
+    direction: rtl;
+    unicode-bidi: bidi-override;
+    bottom: 0px;
+    left: 0px;
+  }
+  
+  
+  .grid-item:hover input[type="radio"]:checked ~ label {
+    color: orange;
+    bottom: 0px;
+    left: 0px;
+  }
 
 #categoria{
     text-align:center;

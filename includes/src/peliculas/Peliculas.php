@@ -25,11 +25,32 @@ class Peliculas extends Lista{
             $htmlImagen = '<a href="peliculas.php?id='.$id.'">
                                 <div class="todoPelicula">
                                     <img class="peliculasImg" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'_img">
-                                    <div class="peliculasTexto"><h1>'. $pelicula->getTitulo() .'<h1></div>
+                                    <div class="peliculasTexto">
+                                        <h1>'. $pelicula->getTitulo() .'<h1>
+                                        <p><b>DIRECTOR:</b>'.$pelicula->getDirector().'</p>
+                                        <p><b>CATEGORIA:</b>'.$pelicula->getCategoria().'</p>
+                                        <p><b>DESCRIPCION:</b>'.$pelicula->getDescripcion().'</p>
+                                        <form>
+                                            <p class="clasificacion">
+                                                <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                                                --><label for="radio1">★</label><!--
+                                                --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+                                                --><label for="radio2">★</label><!--
+                                                --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                                                --><label for="radio3">★</label><!--
+                                                --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                                                --><label for="radio4">★</label><!--
+                                                --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                                                --><label for="radio5">★</label>
+                                            </p>
+                                        </form>
+                                    </div>
+                                    
+
                                 </div>
                             </a>';
             
-            $html .= ' <div class="grid-item"> '. $htmlImagen.'</div>';
+            $html .= ' <div class="grid-item"> '. $htmlImagen.'</div> ';
         }
 
         $html.='</div></div>';
