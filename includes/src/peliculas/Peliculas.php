@@ -16,17 +16,23 @@ class Peliculas extends Lista{
 
     private function mostrarPeliculas($peliculas){
 
-        $html = '<div class="grid-container">';
+        $html = '<div class="tabla"><div class="grid-container">';
         
         foreach($peliculas as $id => $pelicula){
 
             $imagen = $pelicula->getImagen();
             $alt = "imagen_".$pelicula->getTitulo();
-            $htmlImagen = '<a href="peliculas.php?id='.$id.'"><img class="juego" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'_img"></a>';
-            $html .= ' <div class="grid-item"> '.$htmlImagen.'</div>';
+            $htmlImagen = '<a href="peliculas.php?id='.$id.'">
+                                <div class="todoPelicula">
+                                    <img class="peliculasImg" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'_img">
+                                    <div class="peliculasTexto"><h1>'. $pelicula->getTitulo() .'<h1></div>
+                                </div>
+                            </a>';
+            
+            $html .= ' <div class="grid-item"> '. $htmlImagen.'</div>';
         }
 
-        $html.='</div>';
+        $html.='</div></div>';
         
         return $html;
 

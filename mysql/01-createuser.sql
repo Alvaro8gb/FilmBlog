@@ -1,5 +1,5 @@
-CREATE USER 'practica_abd'@'%' IDENTIFIED BY 'practica_abd';
-GRANT ALL PRIVILEGES ON `practica_abd`.* TO 'practica_abd'@'%';
+CREATE USER 'practica_abd_user'@'%' IDENTIFIED BY 'practica_abd_user';
+GRANT ALL PRIVILEGES ON `practica_abd`.* TO 'practica_abd_user'@'%';
 
-CREATE USER 'practica_abd'@'localhost' IDENTIFIED BY 'practica_abd';
-GRANT ALL PRIVILEGES ON `practica_abd`.* TO 'practica_abd'@'localhost';
+CREATE USER 'practica_abd_user'@'localhost' IDENTIFIED BY 'practica_abd_user';
+GRANT ALL PRIVILEGES ON `practica_abd`.* TO 'practica_abd_user'@'localhost';

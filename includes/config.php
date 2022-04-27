@@ -1,6 +1,6 @@
 <?php
 # error_reporting(E_ERROR | E_PARSE); quitar warnings
-
+ini_set('display_errors' , 1);
 set_error_handler(function($errno, $errstr, $errfile, $errline){
     if($errno === E_WARNING){
         // make it more serious than a warning so it can be caught
@@ -18,8 +18,8 @@ set_error_handler(function($errno, $errstr, $errfile, $errline){
 
 define('BD_HOST', 'localhost');
 define('BD_NAME', 'practica_abd');
-define('BD_USER', 'practica_abd');
-define('BD_PASS', 'practica_abd');
+define('BD_USER', 'root');
+define('BD_PASS', '');
 
 /**
  * Parámetros de configuración utilizados para generar las URLs y las rutas a ficheros en la aplicación
@@ -66,7 +66,7 @@ spl_autoload_register(function ($class) {
     $file = $base_dir . str_replace('\\', '/', $relative_class) . '.php';
     // if the file exists, require it
     if (file_exists($file)) {
-        require $file;
+        require_once $file;
     }
 });
 

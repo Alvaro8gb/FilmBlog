@@ -10,6 +10,7 @@ class Categorias{
 
     public function __construct(){
         $this->lista = array();
+
         $this->load();
 
     }
@@ -17,9 +18,8 @@ class Categorias{
     private function load(){
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
-        $sql = "SELECT distinct categoria FROM Peliculas";
+        $sql = "SELECT distinct categoria FROM peliculas";
         $conn = @mysqli_query($conn, $sql);
-
         while($fila = @mysqli_fetch_array($conn)){
             array_push($this->lista,$fila["categoria"]);
         }

@@ -1,25 +1,62 @@
 .grid-container {
 display: grid;
-grid-template-columns: auto auto auto;
-gap: 10px;
-background-color: #ca9c28;
-padding: 10px;
-position:relative;
-
+grid-template-columns: 360px 360px 360px 360px ;
+grid-template-rows: max-content;
+background-color: gray;
+position:absolute;
+height: 100%;
+width: 360 *4 px;
+margin-top: 40px;
 }
 
 .grid-item {
-background-color: rgba(255, 255, 255, 0.8);
-border: 1px solid black;
-text-align: center;
-font-size: 30px;
+background-color: gray;
+border: 5px solid black;
+
 }
 
-.grid-item img{
-    margin:10px;
+.peliculasImg{
+    height: 100%;
+    width: 100%;
+    position:absolute;
+    top: 0;
+    left: 0;
+}
+
+.peliculasTexto{
+    position:absolute;
+    color: transparent;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    text-align: center;
+}
+
+.todoPelicula{
+    position:relative;
     height: 450px;
     width: 350px;
-    position:relative;
+}
+
+
+.grid-item:hover{
+    transform:scale(1.15);
+    z-index: 999;
+}
+
+.grid-item:hover .peliculasTexto{
+
+    color: white;
+}
+.grid-item:hover .peliculasImg{
+
+    filter: brightness(30%);
+}
+
+.tabla{
+    display: flex;
+    justify-content: center;
 }
 
 #categoria{

@@ -1,18 +1,24 @@
 
 <?php
 
+
 use es\abd\Aplicacion;
 use es\abd\peliculas\Categorias;
 
 use es\abd\usuarios\FormularioLogout;
 
-require_once __DIR__.'/../helpers/utils.php';
-$app = Aplicacion::getInstancia();
+
 
 try{
+   require_once __DIR__.'/../helpers/utils.php';
+   
+   $app = Aplicacion::getInstancia();
    $categorias = new Categorias();
+   
    $menu_categorias = $categorias->mostrar_categorias();
+   
    $usuario_info = usuarioInfo($app);
+  
 }catch(\Exception $e){
    $app->paginaError(501,'Error',"Error en header: ".$e->getMessage(),$e->getTrace());
 }

@@ -139,14 +139,14 @@ class Aplicacion{
 	 */
 	public function getConexionBd(){
 	    $this->compruebaInstanciaInicializada();
-		if (! $this->conn ) {
+		if (!$this->conn ) {
+            echo $this->conn;
 			$bdHost = $this->bdDatosConexion['host'];
 			$bdUser = $this->bdDatosConexion['user'];
 			$bdPass = $this->bdDatosConexion['pass'];
 			$bd = $this->bdDatosConexion['bd'];
-			
 			$this->conn = new \mysqli($bdHost, $bdUser, $bdPass, $bd);
-			if ( $this->conn->connect_errno ) {
+            if ( $this->conn->connect_errno ) {
 				echo "Error de conexión a la BD: (" . $this->conn->connect_errno . ") " . utf8_encode($this->conn->connect_error);
 				exit();
 			}
@@ -184,7 +184,7 @@ class Aplicacion{
         if (mb_strlen($path) > 0 && mb_substr($path, 0, 1) !== '/') {
             $path = '/' . $path;
         }
-        include($this->dirInstalacion . $path);
+        require_once($this->dirInstalacion . $path);
     }
 
     public function generaVista(string $rutaVista, &$params){
