@@ -1,6 +1,6 @@
 <?php
 # error_reporting(E_ERROR | E_PARSE); quitar warnings
-ini_set('display_errors' , 1);
+
 set_error_handler(function($errno, $errstr, $errfile, $errline){
     if($errno === E_WARNING){
         // make it more serious than a warning so it can be caught

@@ -5,21 +5,16 @@
 use es\abd\Aplicacion;
 use es\abd\peliculas\Categorias;
 
-use es\abd\usuarios\FormularioLogout;
-
-
+require_once __DIR__.'/../helpers/utils.php';
 
 try{
-   require_once __DIR__.'/../helpers/utils.php';
-   
    $app = Aplicacion::getInstancia();
    $categorias = new Categorias();
    
    $menu_categorias = $categorias->mostrar_categorias();
    
    $usuario_info = usuarioInfo($app);
-  
-}catch(\Exception $e){
+}catch(Exception $e){
    $app->paginaError(501,'Error',"Error en header: ".$e->getMessage(),$e->getTrace());
 }
 
@@ -56,7 +51,7 @@ function usuarioInfo($app){
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   </button>
-                  <a class="navbar-brand" href="#"> Fav-Films</a>
+                  <span class="navbar-brand" > Fav-Films</span>
                </div>
                <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
@@ -90,5 +85,4 @@ function usuarioInfo($app){
    </nav>
 
         
-
-         <!--Fin de la barra de navegación -->
+<!--Fin de la barra de navegación -->

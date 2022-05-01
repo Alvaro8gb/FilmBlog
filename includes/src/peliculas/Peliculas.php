@@ -27,9 +27,8 @@ class Peliculas extends Lista{
                                     <img class="peliculasImg" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'_img">
                                     <div class="peliculasTexto">
                                         <h1>'. $pelicula->getTitulo() .'<h1>
-                                        <p><b>DIRECTOR:</b>'.$pelicula->getDirector().'</p>
-                                        <p><b>CATEGORIA:</b>'.$pelicula->getCategoria().'</p>
-                                        <p><b>DESCRIPCION:</b>'.$pelicula->getDescripcion().'</p>
+                                        <p><b>DIRECTOR: </b>'.$pelicula->getDirector().'</p>
+                                        <p><b>CATEGORIA: </b>'.$pelicula->getCategoria().'</p>
                                         <form>
                                             <p class="clasificacion">
                                                 <input id="radio1" type="radio" name="estrellas" value="5"><!--
