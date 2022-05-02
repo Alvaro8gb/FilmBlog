@@ -76,7 +76,7 @@ class Peliculas extends Lista{
     }
 
     protected function mostrarElem($datos){
-        
+                
         $id_pelicula = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $pelicula = parent::getElement($id_pelicula);
        
