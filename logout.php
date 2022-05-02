@@ -9,7 +9,7 @@ $nombreUsuario = $app->nombreUsuario();
 
 $formLogout = new FormularioLogout();
 $htmlLogout = $formLogout->gestiona();
-$contenidoPrincipal = "<div> <p> Seguro que desea salir $nombreUsuario ? </p> $htmlLogout </div>";
+$contenidoPrincipal = "<div> <br><br><p> Seguro que desea salir $nombreUsuario ? </p> $htmlLogout </div>";
 
 $params = ['tituloPagina' => $tituloPagina, 'contenidoPrincipal' => $contenidoPrincipal];
 $app->generaVista('/plantillas/plantilla.php', $params);
