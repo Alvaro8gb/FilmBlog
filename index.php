@@ -29,7 +29,7 @@ $conn = $app->getConexionBd();
 $sql = sprintf("SELECT idpelicula, avg(puntuacion) as sumaPuntuacion FROM puntuaciones GROUP BY idpelicula ORDER BY sumaPuntuacion desc LIMIT $maxRanking ");
 $consulta = @mysqli_query($conn, $sql);
 while($fila = @mysqli_fetch_array($consulta)){
-    $sql2 = sprintf("SELECT  titulo FROM peliculas WHERE idpelicula = '%s'", $conn->real_escape_string($fila["idpelicula"]));
+    $sql2 = sprintf("SELECT titulo FROM peliculas WHERE idpelicula = '%s'", $conn->real_escape_string($fila["idpelicula"]));
     $consulta2 = @mysqli_query($conn, $sql2);
     $fila2 = @mysqli_fetch_array($consulta2);
     $puntuacion = intval($fila["sumaPuntuacion"]);
