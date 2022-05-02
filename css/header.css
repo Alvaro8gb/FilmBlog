@@ -1,20 +1,11 @@
-#menu {
-    text-align: center;
-    font-size: 30px;
-    margin-top: 4%;
-    margin-bottom: 5%;
-    background-color: hsl(30, 86%, 57%);
+
+.navbar-nav > li > a {
+    font-size: 25px;
 }
 
-#menu ul li {
-
-    list-style:none; 
-    display: inline-block; 
-    text-align: center;
-    margin:auto;
-    padding: 10px;
+.navbar-nav{
+    padding:1%;
 }
-
 .saludo {
     color:white;
     margin-top:1%;

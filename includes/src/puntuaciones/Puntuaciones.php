@@ -9,14 +9,11 @@ class Puntuacion{
     private $idPelicula;
     private $nombrePelicula;
 
-    public function __construct($puntuacion, $idUsuario, $fecha, $comentario, $idPelicula, $nombrePelicula){
+    public function __construct($puntuacion, $idUsuario, $idPelicula, $nombrePelicula){
         $this->puntuacion = $puntuacion;
         $this->idUsuario = $idUsuario;
-        $this->fecha = $fecha;
-        $this->comentario = $comentario;
         $this->idPelicula = $idPelicula;
         $this->nombrePelicula = $nombrePelicula;
-
     }
 
     public function getPuntuacion(){
@@ -25,13 +22,6 @@ class Puntuacion{
 
     public function getIdUsuario(){
         return $this->idUsuario;
-    }
-
-    public function getFecha(){
-        return $this->fecha;
-    }
-    public function getComentario(){
-        return $this->comentario;
     }
 
     public function getIdPelicula(){

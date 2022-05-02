@@ -51,7 +51,6 @@ function usuarioInfo($app){
                   <span class="icon-bar"></span>
                   <span class="icon-bar"></span>
                   </button>
-                  <span class="navbar-brand" > Fav-Films</span>
                </div>
                <div id="navbar" class="navbar-collapse collapse">
                   <ul class="nav navbar-nav">
