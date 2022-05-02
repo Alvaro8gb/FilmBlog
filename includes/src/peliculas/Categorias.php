@@ -34,7 +34,7 @@ class Categorias{
 
             $html .= <<< EOS
             <li> 
-                <a href='categoria.php?categoria=$categoria '>$categoria</a>
+                <a href='categoria.php?categoria=$categoria'>$categoria</a>
             </li>
             EOS;
 

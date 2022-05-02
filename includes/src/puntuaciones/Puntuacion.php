@@ -14,7 +14,7 @@ class Peliculas extends Lista{
         //return new Puntuacion($fila["titulo"],$fila["director"],$fila["descripcion"],$fila["imagen"],$fila["categoria"]);
     }
 
-    public function mostrarPuntacionesByIdPelicula(){
+    public function mostrarPuntacionesByIdPelicula($id){
 
     }
 

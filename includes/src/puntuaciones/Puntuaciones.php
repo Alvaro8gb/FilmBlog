@@ -6,8 +6,6 @@ namespace es\abd\puntuaciones;
 class Puntuacion{
     private $puntuacion;
     private $idUsuario;
-    private $fecha;
-    private $comentario;
     private $idPelicula;
     private $nombrePelicula;
 
@@ -28,7 +26,7 @@ class Puntuacion{
     public function getIdUsuario(){
         return $this->idUsuario;
     }
-    
+
     public function getFecha(){
         return $this->fecha;
     }
