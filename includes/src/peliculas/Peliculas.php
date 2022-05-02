@@ -11,14 +11,26 @@ class Peliculas extends Lista{
     }
 
     protected function crearElem($fila){
-        return new Pelicula($fila["titulo"],$fila["director"],$fila["descripcion"],$fila["imagen"],$fila["categoria"]);
+        return new Pelicula($fila["titulo"],$fila["director"],$fila["descripcion"],$fila["imagen"],$fila["categoria"],$fila["idpelicula"]);
     }
 
     private function mostrarPeliculas($peliculas){
-
         $html = '<div class="tabla"><div class="grid-container">';
         
         foreach($peliculas as $id => $pelicula){
+            $puntuacionPelicula = "";
+            for($i = 0;  $i < $pelicula->getPuntuacion(); $i++){
+                $puntuacionPelicula .= '<p class=puntuacionPositiva>★</p>';                   
+            }
+            for($i = $pelicula->getPuntuacion();  $i < 5; $i++){
+                $puntuacionPelicula .= '<p class=puntuacionNegativa>★</p>';                   
+            }
+            
+            if(strlen($pelicula->getDescripcion()) >= 300){
+                $desc = substr($pelicula->getDescripcion(),0,300) .'...';
+            }else{
+                $desc = $pelicula->getDescripcion();
+            }
 
             $imagen = $pelicula->getImagen();
             $alt = "imagen_".$pelicula->getTitulo();
@@ -27,23 +39,12 @@ class Peliculas extends Lista{
                                     <img class="peliculasImg" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'_img">
                                     <div class="peliculasTexto">
                                         <h1>'. $pelicula->getTitulo() .'<h1>
-                                        <p><b>DIRECTOR: </b>'.$pelicula->getDirector().'</p>
-                                        <p><b>CATEGORIA: </b>'.$pelicula->getCategoria().'</p>
-                                        <form>
-                                            <p class="clasificacion">
-                                                <input id="radio1" type="radio" name="estrellas" value="5"><!--
-                                                --><label for="radio1">★</label><!--
-                                                --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-                                                --><label for="radio2">★</label><!--
-                                                --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-                                                --><label for="radio3">★</label><!--
-                                                --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-                                                --><label for="radio4">★</label><!--
-                                                --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-                                                --><label for="radio5">★</label>
-                                            </p>
-                                        </form>
-                                    </div>
+                                        <p><b>DIRECTOR: </b>'.$pelicula->getDirector().'</p><br>
+                                        <p><b>CATEGORIA: </b>'.$pelicula->getCategoria().'</p><br>
+                                        <p><b>DESCRIPCION: </b>'.$desc .'</p>
+                                        <div class=puntuaciones>'.$puntuacionPelicula.'</div>
+                                   
+                                        </div>
                                     
 
                                 </div>
@@ -58,6 +59,21 @@ class Peliculas extends Lista{
 
     }
 
+   /* <form>
+                                            <p class="clasificacion">
+                                                <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                                                --><label for="radio1">★</label><!--
+                                                --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+                                                --><label for="radio2">★</label><!--
+                                                --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                                                --><label for="radio3">★</label><!--
+                                                --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                                                --><label for="radio4">★</label><!--
+                                                --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                                                --><label for="radio5">★</label>
+                                            </p>
+                                        </form>
+*/
     protected function mostrarElems(){
         return $this->mostrarPeliculas($this->lista);
         

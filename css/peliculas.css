@@ -1,3 +1,18 @@
+.grid-item:hover .puntuacionPositiva{
+  color: orange;
+}
+.grid-item:hover .puntuacionNegativa{
+  color: gray;
+}
+.puntuaciones{
+  display:flex;
+}
+.puntuacionPositiva{
+  color: transparent;
+}
+.puntuacionNegativa{
+  color: transparent;
+}
 .grid-container {
 display: grid;
 grid-template-columns: 360px 360px 360px 360px ;
@@ -60,7 +75,7 @@ border: 5px solid black;
     filter: brightness(30%);
 }
 
-.grid-item:hover label {
+/*.grid-item:hover label {
 
     color: gray;
 }
@@ -124,7 +139,7 @@ border: 5px solid black;
     color: orange;
     bottom: 0px;
     left: 0px;
-  }
+  }*/
 
 #categoria{
     padding-top: 20px;
