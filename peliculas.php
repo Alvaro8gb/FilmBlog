@@ -4,7 +4,6 @@ require_once __DIR__.'/includes/config.php';
 require_once __DIR__.'/includes/vistas/helpers/utils.php';
 
 $tituloPagina = 'Films';
-
 $css = link_css($app->resuelve(RUTA_CSS.'peliculas.css'));
 
 try{

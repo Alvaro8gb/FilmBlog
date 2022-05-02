@@ -37,7 +37,6 @@ class Categorias{
                 <a href='categoria.php?categoria=$categoria'>$categoria</a>
             </li>
             EOS;
-
         }
 
         return $html;

@@ -63,5 +63,18 @@ class Pelicula{
         return $this->puntuacion;
     }
     
+    public function votado($datos){
+        $app = Aplicacion::getInstancia();
+        $conn = $app->getConexionBd();
+        $sql = sprintf("SELECT puntuacion FROM puntuacion WHERE idpelicula = '%d' AND idusuario = '%d'",$this->id,$datos);
+        $conn = @mysqli_query($conn, $sql);
+
+        if($fila = @mysqli_fetch_array($conn)){
+            return $fila["puntuacion"];
+        }
+        else{
+            return 0;
+        }
+    }
 
 }

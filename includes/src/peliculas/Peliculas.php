@@ -40,13 +40,10 @@ class Peliculas extends Lista{
                                     <div class="peliculasTexto">
                                         <h1>'. $pelicula->getTitulo() .'<h1>
                                         <p><b>DIRECTOR: </b>'.$pelicula->getDirector().'</p><br>
-                                        <p><b>CATEGORIA: </b>'.$pelicula->getCategoria().'</p><br>
+                                        <p><b>CATEGORIA: </b>'.$pelicula->getCategoria().'</p>
                                         <p><b>DESCRIPCION: </b>'.$desc .'</p>
                                         <div class=puntuaciones>'.$puntuacionPelicula.'</div>
-                                   
-                                        </div>
-                                    
-
+                                    </div>
                                 </div>
                             </a>';
             
@@ -94,20 +91,67 @@ class Peliculas extends Lista{
     }
 
     protected function mostrarElem($datos){
-
+        session_start();
         $id_pelicula = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $pelicula = parent::getElement($id_pelicula);
        
-        $html = <<< EOS
-        <div class="container">
-            <div class="col"> Titulo {$pelicula->getTitulo()}</div>
-            <div class="col"> Director {$pelicula->getDirector()}</div>
-            <div class="col"> Fecha de estreno {$pelicula->getFechaEstreno()}</div>
-            <div class="col"> Categoria {$pelicula->getCategoria()}</div>
-            <div class="col"> Descripcion  {$pelicula->getDescripcion()}</div>
+        $imagen = $pelicula->getImagen();
+        $alt = "imagen_".$pelicula->getTitulo();
 
-        </div>
-        EOS;
+        $puntuacionPelicula = "";
+            for($i = 0;  $i < $pelicula->getPuntuacion(); $i++){
+                $puntuacionPelicula .= '<p class=puntuacionGeneralPositiva>★</p>';                   
+            }
+            for($i = $pelicula->getPuntuacion();  $i < 5; $i++){
+                $puntuacionPelicula .= '<p class=puntuacionGeneralNegativa>★</p>';                   
+            }
+
+        if(!isset($_SESSION['idUsuario'])){
+            $votar = '<h2>Inicie sesion para puntuar</h2>';
+        }
+        else{
+            $puntuacionUsuario = $pelicula->votado() ;
+            if($puntuacionUsuario == 0){
+                $votar = '<form>
+                <p class="clasificacion">
+                    <input id="radio1" type="radio" name="estrellas" value="5"><!--
+                    --><label for="radio1">★</label><!--
+                    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
+                    --><label for="radio2">★</label><!--
+                    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
+                    --><label for="radio3">★</label><!--
+                    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
+                    --><label for="radio4">★</label><!--
+                    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
+                    --><label for="radio5">★</label>
+                </p>
+            </form>';
+            }
+            else{
+                $votar = "<div>";
+                for($i = 0;  $i < $puntuacionUsuario; $i++){
+                    $votar .= '<p class=puntuacionGeneralPositiva>★</p>';                   
+                }
+                for($i = $puntuacionUsuario;  $i < 5; $i++){
+                    $votar .= '<p class=puntuacionGeneralNegativa>★</p>';                   
+                }
+                $votar .= '</div>';
+            }
+        }
+        $html  = ' <div class="todoPeliculaIndividual">
+            <img class="peliculasImgIndividual" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'_img">
+            <div class="peliculasTextoIndividual">
+                <h1 class="tituloIndividual">'. $pelicula->getTitulo() .'<h1><br>
+                <p class="textoIndividual"><b>DIRECTOR: </b>'.$pelicula->getDirector().'</p><br>
+                <p class="textoIndividual"><b>CATEGORIA: </b>'.$pelicula->getCategoria().'</p><br>
+                <p class="textoIndividual"><b>DESCRIPCION: </b>'.$pelicula->getDescripcion() .'</p>
+                <div class="puntuacionesIndividual">
+                    <div class="puntuacionesGeneralIndividual">'.$puntuacionPelicula.'</div>
+                    '.$votar.'
+                </div>
+            </div>
+        </div>';
+        
 
         return $html;
 
