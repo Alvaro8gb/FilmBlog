@@ -1,8 +1,12 @@
 .grid-item:hover .puntuacionPositiva{
   color: orange;
+  margin:0;
+  padding: 0;
 }
 .grid-item:hover .puntuacionNegativa{
   color: gray;
+  margin:0;
+  padding: 0;
 }
 .puntuaciones{
   display:flex;
@@ -39,9 +43,12 @@ border: 5px solid black;
 .textoIndividual{
   font-size: 20px;
 }
+.votoIndividual{
+  font-size: 50px;
+}
 .peliculasImgIndividual{
-  height: 450px;
-  width: 350px;
+  height: 540px;
+  width: 420px;
   margin: 100px;
   border: 5px solid black;
   float: left;
@@ -105,7 +112,7 @@ border: 5px solid black;
     filter: brightness(30%);
 }
 
-/*.grid-item:hover label {
+.grid-item:hover label {
 
     color: gray;
 }
@@ -124,52 +131,48 @@ border: 5px solid black;
     justify-content: center;
 }
 
+.votoTexto{
+  float:right;
+}
+.votoTexto2{
+  float:right;
+}
 #form {
-    width: 100%;
-    margin: 0 auto;
-    height: 100px;
-    position: absolute;
-    bottom: 0px;
-    left: 0px;
-  }
-  
-  #form p {
-    text-align: center;
-    bottom: 0px;
-    left: 0px;
-  }
-  
-  #form label {
-    font-size: 50px;
-    bottom: 0px;
-    left: 0px;
-  }
-  
-  input[type="radio"] {
-    display: none;
-    bottom: 0px;
-    left: 0px;
-  }
-  
-  label {
-    color: transparent;
-    bottom: 0px;
-    left: 0px;
-  }
-  
-  .clasificacion {
-    direction: rtl;
-    unicode-bidi: bidi-override;
-    bottom: 0px;
-    left: 0px;
-  }
-  
-  
-  .grid-item:hover input[type="radio"]:checked ~ label {
-    color: orange;
-    bottom: 0px;
-    left: 0px;
-  }*/
+  width: 250px;
+  margin: 0 auto;
+  height: 50px;
+  float:left;
+}
+
+#form p {
+  text-align: center;
+}
+
+#form label {
+  font-size: 20px;
+}
+
+input[type="radio"] {
+  display: none;
+}
+
+label {
+  color: grey;
+}
+
+.clasificacion {
+  direction: rtl;
+  unicode-bidi: bidi-override;
+}
+
+label:hover,
+label:hover ~ label {
+  color: orange;
+}
+
+input[type="radio"]:checked ~ label {
+  color: orange;
+}
 
 #categoria{
     padding-top: 20px;

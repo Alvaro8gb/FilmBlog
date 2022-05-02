@@ -4,7 +4,7 @@ INSERT INTO `usuarios` (`IdUsuario`, `nombreUsuario`, `nombre`, `password`, `cor
 (1, 'admin', 'Administrador', '$2y$10$j3gDDnUmICg/rvP0lmz8Duv2FcE1Ufi0tDQpIqx5cKcbqtkBOxhfS', 'admin@ucm.es', 'admin'),
 (2, 'user', 'Usuario', '$2y$10$ImLgzNnDkWlI7LBB5a1mk.vNu8Fb8z79syAsoOXqM7jy5hrTaZKnG', 'user@ucm.es', 'user'),
 (3, 'test', 'Tester', '$2y$10$ImLgzNnDkWlI7LBB5a1mk.vNu8Fb8z79syAsoOXqM7jy5hrTaZKnG', 'test@ucm.es', 'user'),
-(4, 'Serginio', 'Sergio', '$2y$10$0D/3TMzY6mVTTKYJpAXP0OQrJmtvIxjqaY20IdEdgmx4xXq..UaL6', 'sergilor@ucm.es', 'user',
+(4, 'Serginio', 'Sergio', '$2y$10$0D/3TMzY6mVTTKYJpAXP0OQrJmtvIxjqaY20IdEdgmx4xXq..UaL6', 'sergilor@ucm.es', 'user'),
 (5, 'AlvaVarito', 'Alvaro', '$2y$10$qefQg2bKTUz57GG738X0duVwmWjuBXZT6bkGYTk97mYzwJLkKDwZq', 'alvaga28@ucm.es', 'user');
 COMMIT;
 

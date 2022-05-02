@@ -56,21 +56,6 @@ class Peliculas extends Lista{
 
     }
 
-   /* <form>
-                                            <p class="clasificacion">
-                                                <input id="radio1" type="radio" name="estrellas" value="5"><!--
-                                                --><label for="radio1">★</label><!--
-                                                --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-                                                --><label for="radio2">★</label><!--
-                                                --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-                                                --><label for="radio3">★</label><!--
-                                                --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-                                                --><label for="radio4">★</label><!--
-                                                --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-                                                --><label for="radio5">★</label>
-                                            </p>
-                                        </form>
-*/
     protected function mostrarElems(){
         return $this->mostrarPeliculas($this->lista);
         
@@ -105,14 +90,16 @@ class Peliculas extends Lista{
             for($i = $pelicula->getPuntuacion();  $i < 5; $i++){
                 $puntuacionPelicula .= '<p class=puntuacionGeneralNegativa>★</p>';                   
             }
-
+        
+        $votar = '<div class="votar"> <p class="votoTexto"><b>Tu voto</b><p><br>';
         if($_SESSION['login'] == false){
-            $votar = '<h2>Inicie sesion para puntuar</h2>';
+            $votar .= '<h2 class="votoTexto2">Inicie sesion para puntuar</h2>';
         }
         else{
+            $votar .= '<div class= "votoIndividual"> ';
             $puntuacionUsuario = $pelicula->votado($_SESSION['idUsuario']) ;
             if($puntuacionUsuario == 0){
-                $votar = '<form>
+                $votar .= '<form>
                 <p class="clasificacion">
                     <input id="radio1" type="radio" name="estrellas" value="5"><!--
                     --><label for="radio1">★</label><!--
@@ -125,19 +112,23 @@ class Peliculas extends Lista{
                     --><input id="radio5" type="radio" name="estrellas" value="1"><!--
                     --><label for="radio5">★</label>
                 </p>
-            </form>';
+            </form>
+            </div>';
             }
             else{
-                $votar = "<div>";
+                $puntuacionIndividual = "";
                 for($i = 0;  $i < $puntuacionUsuario; $i++){
-                    $votar .= '<p class=puntuacionGeneralPositiva>★</p>';                   
+                    $puntuacionIndividual .= '<p class=puntuacionGeneralPositiva>★</p>';                   
                 }
                 for($i = $puntuacionUsuario;  $i < 5; $i++){
-                    $votar .= '<p class=puntuacionGeneralNegativa>★</p>';                   
+                    $puntuacionIndividual .= '<p class=puntuacionGeneralNegativa>★</p>';                   
                 }
-                $votar .= '</div>';
+               $votar .= $puntuacionIndividual;
             }
         }
+        $votar .= '</div>';
+
+
         $html  = ' <div class="todoPeliculaIndividual">
             <img class="peliculasImgIndividual" src="data:image/png;base64,'.base64_encode($imagen).'" alt ="'.$alt.'_img">
             <div class="peliculasTextoIndividual">

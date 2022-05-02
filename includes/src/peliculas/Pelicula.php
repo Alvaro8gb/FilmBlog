@@ -23,7 +23,7 @@ class Pelicula{
 
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
-        $sql = sprintf("SELECT SUM(puntuacion) AS suma, COUNT(*) AS users FROM puntuacion WHERE idpelicula = '%d'",$this->id);
+        $sql = sprintf("SELECT SUM(puntuacion) AS suma, COUNT(*) AS users FROM puntuaciones WHERE idpelicula = '%d'",$this->id);
         $conn = @mysqli_query($conn, $sql);
 
         $fila = @mysqli_fetch_array($conn);
@@ -66,15 +66,15 @@ class Pelicula{
     public function votado($datos){
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
-        $sql = sprintf("SELECT puntuacion FROM puntuacion WHERE idpelicula = '%d' AND idusuario = '%d'",$this->id,$datos);
+        $sql = sprintf("SELECT puntuacion FROM puntuaciones WHERE idpelicula = '%d' AND idusuario = '%d'",$this->id,$datos);
         $conn = @mysqli_query($conn, $sql);
 
-        if($fila = @mysqli_fetch_array($conn)){
+        while($fila = @mysqli_fetch_array($conn)){
             return $fila["puntuacion"];
         }
-        else{
-            return 0;
-        }
+        
+        return 0;
+        
     }
 
 }
