@@ -91,7 +91,7 @@ class Peliculas extends Lista{
     }
 
     protected function mostrarElem($datos){
-        session_start();
+        
         $id_pelicula = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $pelicula = parent::getElement($id_pelicula);
        
@@ -106,11 +106,11 @@ class Peliculas extends Lista{
                 $puntuacionPelicula .= '<p class=puntuacionGeneralNegativa>★</p>';                   
             }
 
-        if(!isset($_SESSION['idUsuario'])){
+        if($_SESSION['login'] == false){
             $votar = '<h2>Inicie sesion para puntuar</h2>';
         }
         else{
-            $puntuacionUsuario = $pelicula->votado() ;
+            $puntuacionUsuario = $pelicula->votado($_SESSION['idUsuario']) ;
             if($puntuacionUsuario == 0){
                 $votar = '<form>
                 <p class="clasificacion">
