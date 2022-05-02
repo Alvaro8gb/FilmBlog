@@ -24,25 +24,26 @@ $contenidoPrincipal .= <<<EOS
       </tr>
 EOS;
 
-/*
+$maxRanking = 5;
 $conn = $app->getConexionBd();
-$sql = sprintf("SELECT IdJugador, sum(Puntuacion) as SumaPuntos FROM ranking GROUP BY IdJugador ORDER BY SumaPuntos desc LIMIT $maxNumJugadores ");
+$sql = sprintf("SELECT idpelicula, avg(puntuacion) as sumaPuntuacion FROM puntuaciones GROUP BY idpelicula ORDER BY sumaPuntuacion desc LIMIT $maxRanking ");
 $consulta = @mysqli_query($conn, $sql);
 while($fila = @mysqli_fetch_array($consulta)){
-    $sql2 = sprintf("SELECT  nombreUsuario FROM usuarios WHERE IdUsuario = '%s'", $conn->real_escape_string($fila["IdJugador"]));
+    $sql2 = sprintf("SELECT  titulo FROM peliculas WHERE idpelicula = '%s'", $conn->real_escape_string($fila["idpelicula"]));
     $consulta2 = @mysqli_query($conn, $sql2);
     $fila2 = @mysqli_fetch_array($consulta2);
+    $puntuacion = intval($fila["sumaPuntuacion"]);
     $contenidoPrincipal .= <<<EOS
       <tr>
-      <td>{$fila2["nombreUsuario"]}</td>
-      <td>{$fila["SumaPuntos"]}</td>
+      <td>{$fila2["titulo"]}</td>
+      <td>$puntuacion</td>
       </tr>
     EOS;
 }
 
 $consulta->free();
 
-*/
+
 $contenidoPrincipal .= <<<EOS
   </table>
   </div>

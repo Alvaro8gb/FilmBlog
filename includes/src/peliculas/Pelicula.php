@@ -23,7 +23,7 @@ class Pelicula{
 
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
-        $sql = sprintf("SELECT SUM(puntuacion) AS suma, COUNT(*) AS users FROM puntuacion WHERE idpelicula = '%d'",$this->id);
+        $sql = sprintf("SELECT SUM(puntuacion) AS suma, COUNT(*) AS users FROM puntuaciones WHERE idpelicula = '%d'",$this->id);
         $conn = @mysqli_query($conn, $sql);
 
         $fila = @mysqli_fetch_array($conn);
