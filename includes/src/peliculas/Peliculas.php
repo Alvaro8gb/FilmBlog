@@ -82,8 +82,8 @@ class Peliculas extends Lista{
        
         $imagen = $pelicula->getImagen();
         $alt = "imagen_".$pelicula->getTitulo();
-
         $puntuacionPelicula = "";
+        echo 'puntuacion ' . $pelicula->getPuntuacion();
             for($i = 0;  $i < $pelicula->getPuntuacion(); $i++){
                 $puntuacionPelicula .= '<p class=puntuacionGeneralPositiva>★</p>';                   
             }
@@ -97,6 +97,7 @@ class Peliculas extends Lista{
         }
         else{
             $votar .= '<div class= "votoIndividual"> ';
+            
             $puntuacionUsuario = $pelicula->votado($_SESSION['idUsuario']) ;
             if($puntuacionUsuario == 0){
                 $votar .= '<form>
@@ -116,13 +117,14 @@ class Peliculas extends Lista{
             </div>';
             }
             else{
-                $puntuacionIndividual = "";
+                $puntuacionIndividual = '<div class="tusEstrellas">';
                 for($i = 0;  $i < $puntuacionUsuario; $i++){
                     $puntuacionIndividual .= '<p class=puntuacionGeneralPositiva>★</p>';                   
                 }
                 for($i = $puntuacionUsuario;  $i < 5; $i++){
                     $puntuacionIndividual .= '<p class=puntuacionGeneralNegativa>★</p>';                   
                 }
+                $puntuacionIndividual .= '</div>';
                $votar .= $puntuacionIndividual;
             }
         }

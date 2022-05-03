@@ -29,7 +29,7 @@ class Pelicula{
         $fila = @mysqli_fetch_array($conn);
 
         if($fila["users"] != 0){
-            $this->puntuacion = $fila["suma"]/$fila["users"];
+            $this->puntuacion = round($fila["suma"]/$fila["users"]);
         }
         else{
             $this->puntuacion = 0;
@@ -64,12 +64,13 @@ class Pelicula{
     }
     
     public function votado($datos){
+        echo " id pelicula " . $this->id;
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
         $sql = sprintf("SELECT puntuacion FROM puntuaciones WHERE idpelicula = '%d' AND idusuario = '%d'",$this->id,$datos);
         $conn = @mysqli_query($conn, $sql);
 
-        while($fila = @mysqli_fetch_array($conn)){
+        if($fila = @mysqli_fetch_array($conn)){
             return $fila["puntuacion"];
         }
         

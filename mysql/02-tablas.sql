@@ -17,6 +17,10 @@ CREATE TABLE `usuarios` (
   `rol` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+
+ALTER TABLE `usuarios`
+  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+COMMIT;
 --
 -- Estructura de tabla para la tabla `peliculas`
 --
