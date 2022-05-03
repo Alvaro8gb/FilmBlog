@@ -21,19 +21,7 @@ class Pelicula{
         $this->categoria = $categoria;
         $this->id = $id;
 
-        $app = Aplicacion::getInstancia();
-        $conn = $app->getConexionBd();
-        $sql = sprintf("SELECT SUM(puntuacion) AS suma, COUNT(*) AS users FROM puntuaciones WHERE idpelicula = '%d'",$this->id);
-        $conn = @mysqli_query($conn, $sql);
-
-        $fila = @mysqli_fetch_array($conn);
-
-        if($fila["users"] != 0){
-            $this->puntuacion = round($fila["suma"]/$fila["users"]);
-        }
-        else{
-            $this->puntuacion = 0;
-        }
+        self::setPuntuacion();
     }
 
     public function getTitulo(){
@@ -75,12 +63,28 @@ class Pelicula{
         return 0;
         
     }
+    private function setPuntuacion(){
+        $app = Aplicacion::getInstancia();
+        $conn = $app->getConexionBd();
+        $sql = sprintf("SELECT AVG(puntuacion) AS suma, COUNT(*) AS users FROM puntuaciones WHERE idpelicula = '%d'",$this->id);
+        $conn = @mysqli_query($conn, $sql);
+
+        $fila = @mysqli_fetch_array($conn);
+
+        if($fila["users"] != 0){
+            $this->puntuacion = $fila["suma"];
+        }
+        else{
+            $this->puntuacion = 0;
+        }
+    }
 
     public function nuevaPuntuacion($userId, $puntuacion){
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
         $query = sprintf("INSERT INTO puntuaciones VALUES ('%d' ,'%d', '%d')",$this->id,$userId, $puntuacion);
         $conn = @mysqli_query($conn, $query);
+        self::setPuntuacion();
     }
 
 }

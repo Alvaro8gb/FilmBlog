@@ -80,7 +80,7 @@ class Peliculas extends Lista{
         $id_pelicula = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $pelicula = parent::getElement($id_pelicula);
        
-        if(isset($_POST["estrellas"])){
+        if(isset($_POST["estrellas"]) && $pelicula->votado($_SESSION['idUsuario']) == 0){
             $pelicula->nuevaPuntuacion($_SESSION['idUsuario'], $_POST["estrellas"]);
         }
 
