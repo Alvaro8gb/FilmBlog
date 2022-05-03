@@ -24,6 +24,10 @@ ALTER TABLE `usuarios`
   MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
 
+
+--
+-- Estructura de tabla para la tabla `peliculas`
+--
 DROP TABLE IF EXISTS `peliculas`;
 
 CREATE TABLE `peliculas` (
@@ -42,6 +46,10 @@ ALTER TABLE `peliculas`
   MODIFY `idpelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 COMMIT;
 
+
+--
+-- Estructura de tabla para la tabla `puntuaciones`
+--
 
 DROP TABLE IF EXISTS `puntuaciones`;
 

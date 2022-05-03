@@ -17,12 +17,13 @@ $contenidoPrincipal .= <<<EOS
       <span id = "ranking">TOP Peliculas</span>
       <div class="liquid"></div>
    </div>
-    <table class ="out">
+    <table class ="tabla_ranking">
       <tr>
           <th>PELICULA</th>
           <th>PUNTUACION</th>
       </tr>
 EOS;
+
 
 $maxRanking = 5;
 $conn = $app->getConexionBd();
@@ -36,7 +37,7 @@ while($fila = @mysqli_fetch_array($consulta)){
     $contenidoPrincipal .= <<<EOS
       <tr>
       <td>{$fila2["titulo"]}</td>
-      <td>$puntuacion</td>
+      <td id ="puntuacion">$puntuacion</td>
       </tr>
     EOS;
 }

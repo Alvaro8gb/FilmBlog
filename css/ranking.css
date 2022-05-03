@@ -1,6 +1,3 @@
-table {
-  font-size: 25px;
-}
 
 #container_ranking{
     margin-top:60px;
@@ -9,18 +6,35 @@ table {
 #ranking{
     text-align: center; 
 }
-.out{
-  background-color: rgb(48, 43, 109);
-}
-table, th {
-text-align: center;
-  margin:auto;
+.tabla_ranking{
+  font-size: 25px;
+  background-color: hsl(233, 64%, 36%);
   border: 2px solid;
-}
-th, td {
+  padding:5px;
   font-family:"Bangers";
+  border-collapse: separate;
+  border-spacing: 5px;
 
 }
+
+.tabla_ranking th,td {
+  padding:0.3em;
+}
+.tabla_ranking th{
+  text-align: center; 
+  background-color: rgb(170, 145, 36);
+  
+}
+
+.tabla_ranking td{
+  background-color: rgb(24, 151, 186);
+}
+
+.tabla_ranking #puntuacion{
+  color:rgb(246, 226, 9);
+  text-align: center; 
+}
+
 .move{
   text-align: center; 
   font-size: 35px;

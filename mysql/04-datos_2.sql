@@ -1,3 +1,8 @@
+
+--
+-- Datos de  la tabla para la tabla `usuarios`
+--
+
 DELETE FROM usuarios;
 
 INSERT INTO `usuarios` (`IdUsuario`, `nombreUsuario`, `nombre`, `password`, `correo`, `rol`) VALUES
@@ -7,6 +12,11 @@ INSERT INTO `usuarios` (`IdUsuario`, `nombreUsuario`, `nombre`, `password`, `cor
 (4, 'Serginio', 'Sergio', '$2y$10$0D/3TMzY6mVTTKYJpAXP0OQrJmtvIxjqaY20IdEdgmx4xXq..UaL6', 'sergilor@ucm.es', 'user'),
 (5, 'AlvaVarito', 'Alvaro', '$2y$10$qefQg2bKTUz57GG738X0duVwmWjuBXZT6bkGYTk97mYzwJLkKDwZq', 'alvaga28@ucm.es', 'user');
 COMMIT;
+
+
+--
+-- Datos de  la tabla para la tabla `puntuaciones`
+--
 
 DELETE FROM puntuaciones;
 INSERT INTO `puntuaciones` (`idpelicula`, `idusuario`, `puntuacion`) VALUES ('1','2','1');
