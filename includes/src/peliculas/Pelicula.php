@@ -2,7 +2,7 @@
 
 namespace es\abd\peliculas;
 use es\abd\Aplicacion;
-
+use es\abd\usuarios\usuario;
 class Pelicula{
     private $titulo;
     private $director;
@@ -64,7 +64,6 @@ class Pelicula{
     }
     
     public function votado($datos){
-        echo " id pelicula " . $this->id;
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
         $sql = sprintf("SELECT puntuacion FROM puntuaciones WHERE idpelicula = '%d' AND idusuario = '%d'",$this->id,$datos);
@@ -73,9 +72,15 @@ class Pelicula{
         if($fila = @mysqli_fetch_array($conn)){
             return $fila["puntuacion"];
         }
-        
         return 0;
         
+    }
+
+    public function nuevaPuntuacion($userId, $puntuacion){
+        $app = Aplicacion::getInstancia();
+        $conn = $app->getConexionBd();
+        $query = sprintf("INSERT INTO puntuaciones VALUES ('%d' ,'%d', '%d')",$this->id,$userId, $puntuacion);
+        $conn = @mysqli_query($conn, $query);
     }
 
 }

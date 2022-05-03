@@ -80,10 +80,14 @@ class Peliculas extends Lista{
         $id_pelicula = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $pelicula = parent::getElement($id_pelicula);
        
+        if(isset($_POST["estrellas"])){
+            $pelicula->nuevaPuntuacion($_SESSION['idUsuario'], $_POST["estrellas"]);
+        }
+
         $imagen = $pelicula->getImagen();
         $alt = "imagen_".$pelicula->getTitulo();
         $puntuacionPelicula = "";
-        echo 'puntuacion ' . $pelicula->getPuntuacion();
+       
             for($i = 0;  $i < $pelicula->getPuntuacion(); $i++){
                 $puntuacionPelicula .= '<p class=puntuacionGeneralPositiva>★</p>';                   
             }
@@ -97,23 +101,24 @@ class Peliculas extends Lista{
         }
         else{
             $votar .= '<div class= "votoIndividual"> ';
-            
             $puntuacionUsuario = $pelicula->votado($_SESSION['idUsuario']) ;
             if($puntuacionUsuario == 0){
-                $votar .= '<form>
-                <p class="clasificacion">
-                    <input id="radio1" type="radio" name="estrellas" value="5"><!--
-                    --><label for="radio1">★</label><!--
-                    --><input id="radio2" type="radio" name="estrellas" value="4"><!--
-                    --><label for="radio2">★</label><!--
-                    --><input id="radio3" type="radio" name="estrellas" value="3"><!--
-                    --><label for="radio3">★</label><!--
-                    --><input id="radio4" type="radio" name="estrellas" value="2"><!--
-                    --><label for="radio4">★</label><!--
-                    --><input id="radio5" type="radio" name="estrellas" value="1"><!--
-                    --><label for="radio5">★</label>
-                </p>
-            </form>
+                $votar .= 
+                '<form action="" method="post" id = "my_form">
+                    <p class="clasificacion">
+                        <input id="radio1" type="radio" name="estrellas" value="5" onclick="javascript: submit()"><!--
+                        --><label for="radio1">★</label><!--
+                        --><input id="radio2" type="radio" name="estrellas" value="4" onclick="javascript: submit()"><!--
+                        --><label for="radio2">★</label><!--
+                        --><input id="radio3" type="radio" name="estrellas" value="3" onclick="javascript: submit()"><!--
+                        --><label for="radio3">★</label><!--
+                        --><input id="radio4" type="radio" name="estrellas" value="2" onclick="javascript: submit()"><!--
+                        --><label for="radio4">★</label><!--
+                        --><input id="radio5" type="radio" name="estrellas" value="1" onclick="javascript: submit()"><!--
+                        --><label for="radio5">★</label>
+                    </p>
+                    
+                </form>
             </div>';
             }
             else{

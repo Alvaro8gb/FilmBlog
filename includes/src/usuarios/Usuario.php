@@ -44,7 +44,7 @@ class Usuario{
     }
 
     private static function createUser($fila){
-        return  new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['correo'], $fila['IdUsuario'], $fila['rol']);
+        return  new Usuario($fila['nombreUsuario'], $fila['nombre'], $fila['password'], $fila['correo'], $fila['idusuario'], $fila['rol']);
     }
 
     public static function buscarUsuarioPorNombre($nombre){
@@ -52,7 +52,7 @@ class Usuario{
 
     }
     public static function buscarUsuarioPorId($id){
-        return self::buscaUsuario($id,"IdUsuario");
+        return self::buscaUsuario($id,"idusuario");
 
     }
 
@@ -77,7 +77,6 @@ class Usuario{
         }else{
             error_log("Error BD ({$conn->errno}): {$conn->error}");
         }
-
         return $user;
 
     }

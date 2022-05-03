@@ -17,13 +17,12 @@ CREATE TABLE `usuarios` (
   `rol` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+ALTER TABLE `usuarios`
+  ADD PRIMARY KEY (`idusuario`);
 
 ALTER TABLE `usuarios`
-  MODIFY `idusuarios` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idusuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 COMMIT;
---
--- Estructura de tabla para la tabla `peliculas`
---
 
 DROP TABLE IF EXISTS `peliculas`;
 
@@ -38,15 +37,6 @@ CREATE TABLE `peliculas` (
    UNIQUE KEY `titulo` (`titulo`),
    KEY `categoria` (`categoria`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
-
---
--- AUTO_INCREMENT de las tablas volcadas
---
-
---
--- AUTO_INCREMENT de la tabla `peliculas`
---
 
 ALTER TABLE `peliculas`
   MODIFY `idpelicula` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
