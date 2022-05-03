@@ -2,7 +2,7 @@
 
 namespace es\abd\peliculas;
 use es\abd\Aplicacion;
-use es\abd\usuarios\usuario;
+
 class Pelicula{
     private $titulo;
     private $director;
@@ -51,10 +51,10 @@ class Pelicula{
         return $this->puntuacion;
     }
     
-    public function votado($datos){
+    public function votado($idUsuario){
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
-        $sql = sprintf("SELECT puntuacion FROM puntuaciones WHERE idpelicula = '%d' AND idusuario = '%d'",$this->id,$datos);
+        $sql = sprintf("SELECT puntuacion FROM puntuaciones WHERE idpelicula = '%d' AND idusuario = '%d'",$this->id,$idUsuario);
         $conn = @mysqli_query($conn, $sql);
 
         if($fila = @mysqli_fetch_array($conn)){
@@ -66,13 +66,13 @@ class Pelicula{
     private function setPuntuacion(){
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
-        $sql = sprintf("SELECT AVG(puntuacion) AS suma, COUNT(*) AS users FROM puntuaciones WHERE idpelicula = '%d'",$this->id);
+        $sql = sprintf("SELECT AVG(puntuacion) AS media, COUNT(*) as users FROM puntuaciones WHERE idpelicula = '%d'",$this->id);
         $conn = @mysqli_query($conn, $sql);
 
         $fila = @mysqli_fetch_array($conn);
 
         if($fila["users"] != 0){
-            $this->puntuacion = round($fila["suma"]);
+            $this->puntuacion = intval($fila["media"]);
         }
         else{
             $this->puntuacion = 0;
@@ -83,8 +83,8 @@ class Pelicula{
         $app = Aplicacion::getInstancia();
         $conn = $app->getConexionBd();
         $query = sprintf("INSERT INTO puntuaciones VALUES ('%d' ,'%d', '%d')",$this->id,$userId, $puntuacion);
-        $conn = @mysqli_query($conn, $query);
-        self::setPuntuacion();
+        $res = @mysqli_query($conn, $query);
+        $this->setPuntuacion();
     }
 
 }

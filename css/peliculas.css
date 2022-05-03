@@ -187,3 +187,7 @@ input[type="radio"]:checked ~ label {
     padding-top: 20px;
     text-align:center;
 }
+
+.buton_estrellas{
+  background-color: rgb(212, 175, 55);
+}

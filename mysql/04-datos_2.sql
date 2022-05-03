@@ -11,7 +11,7 @@ COMMIT;
 DELETE FROM puntuaciones;
 INSERT INTO `puntuaciones` (`idpelicula`, `idusuario`, `puntuacion`) VALUES ('1','2','1');
 INSERT INTO `puntuaciones` (`idpelicula`, `idusuario`, `puntuacion`) VALUES ('2','2','1');
-INSERT INTO `puntuaciones` (`idpelicula`, `idusuario`, `puntuacion`) VALUES ('3','2','0');
+INSERT INTO `puntuaciones` (`idpelicula`, `idusuario`, `puntuacion`) VALUES ('3','2','2');
 INSERT INTO `puntuaciones` (`idpelicula`, `idusuario`, `puntuacion`) VALUES ('4','2','2');
 INSERT INTO `puntuaciones` (`idpelicula`, `idusuario`, `puntuacion`) VALUES ('8','2','3');
 INSERT INTO `puntuaciones` (`idpelicula`, `idusuario`, `puntuacion`) VALUES ('9','2','3');

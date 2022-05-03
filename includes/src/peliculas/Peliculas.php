@@ -1,6 +1,8 @@
 <?php
 
 namespace es\abd\peliculas;
+
+use es\abd\Aplicacion;
 use es\abd\Lista;
 
 class Peliculas extends Lista{
@@ -75,62 +77,78 @@ class Peliculas extends Lista{
         return $this->mostrarPeliculas($peliculas_categoria);
     }
 
+    private function generarPuntuacionPelicula($puntuacion){
+
+        $puntuacionPelicula = "";
+
+        for($i = 0;  $i < $puntuacion; $i++){
+            $puntuacionPelicula .= '<p class=puntuacionGeneralPositiva>★</p>';                   
+        }
+        for($i = $puntuacion;  $i < 5; $i++){
+            $puntuacionPelicula .= '<p class=puntuacionGeneralNegativa>★</p>';                   
+        }
+
+        return $puntuacionPelicula;
+
+    }
+
     protected function mostrarElem($datos){
                 
         $id_pelicula = filter_var(trim($datos["id"]), FILTER_SANITIZE_FULL_SPECIAL_CHARS);  
         $pelicula = parent::getElement($id_pelicula);
+        $app = Aplicacion::getInstancia();
        
         if(isset($_POST["estrellas"]) && $pelicula->votado($_SESSION['idUsuario']) == 0){
             $pelicula->nuevaPuntuacion($_SESSION['idUsuario'], $_POST["estrellas"]);
+            $app->redirige($_SERVER['PHP_SELF']."?id=$id_pelicula");
         }
 
         $imagen = $pelicula->getImagen();
         $alt = "imagen_".$pelicula->getTitulo();
-        $puntuacionPelicula = "";
-       
-            for($i = 0;  $i < $pelicula->getPuntuacion(); $i++){
-                $puntuacionPelicula .= '<p class=puntuacionGeneralPositiva>★</p>';                   
-            }
-            for($i = $pelicula->getPuntuacion();  $i < 5; $i++){
-                $puntuacionPelicula .= '<p class=puntuacionGeneralNegativa>★</p>';                   
-            }
+
+       $puntuacionPelicula = $this->generarPuntuacionPelicula($pelicula->getPuntuacion());
         
-        $votar = '<div class="votar"> <p class="votoTexto"><b>Tu voto</b><p><br>';
         if($_SESSION['login'] == false){
-            $votar .= '<h2 class="votoTexto2">Inicie sesion para puntuar</h2>';
+            $votar = '<h2 class="votoTexto2">Inicie sesion para puntuar</h2>';
         }
         else{
-            $votar .= '<div class= "votoIndividual"> ';
-            $puntuacionUsuario = $pelicula->votado($_SESSION['idUsuario']) ;
+            $votar = <<< EOS
+                    <div class="votar"> 
+                        <p class="votoTexto"><b>Tu voto</b><p>
+                        <br>
+                    <div class= "votoIndividual"> 
+            EOS;
+                
+            $puntuacionUsuario = $pelicula->votado($app->idUsuario()) ;
             if($puntuacionUsuario == 0){
-                $votar .= 
-                '<form action="" method="post" id = "my_form">
-                    <p class="clasificacion">
-                        <input id="radio1" type="radio" name="estrellas" value="5" onclick="javascript: submit()"><!--
-                        --><label for="radio1">★</label><!--
-                        --><input id="radio2" type="radio" name="estrellas" value="4" onclick="javascript: submit()"><!--
-                        --><label for="radio2">★</label><!--
-                        --><input id="radio3" type="radio" name="estrellas" value="3" onclick="javascript: submit()"><!--
-                        --><label for="radio3">★</label><!--
-                        --><input id="radio4" type="radio" name="estrellas" value="2" onclick="javascript: submit()"><!--
-                        --><label for="radio4">★</label><!--
-                        --><input id="radio5" type="radio" name="estrellas" value="1" onclick="javascript: submit()"><!--
-                        --><label for="radio5">★</label>
-                    </p>
-                    
-                </form>
-            </div>';
+                $votar = <<< EOS
+                    <form action="" method="post" id = "my_form">
+                        <p class="clasificacion">
+                            <input id="radio1" type="radio" name="estrellas" value="5" ><!--
+                            --><label for="radio1">★</label><!--
+                            --><input id="radio2" type="radio" name="estrellas" value="4" ><!--
+                            --><label for="radio2">★</label><!--
+                            --><input id="radio3" type="radio" name="estrellas" value="3" ><!--
+                            --><label for="radio3">★</label><!--
+                            --><input id="radio4" type="radio" name="estrellas" value="2" ><!--
+                            --><label for="radio4">★</label><!--
+                            --><input id="radio5" type="radio" name="estrellas" value="1" ><!--
+                            --><label for="radio5">★</label>
+                            <button type="submit" class="buton_estrellas"name="puntuar">Puntuar</button>
+                        </p>
+
+                         
+                    </form>
+                </div>
+                EOS;
             }
             else{
-                $puntuacionIndividual = '<div class="tusEstrellas">';
-                for($i = 0;  $i < $puntuacionUsuario; $i++){
-                    $puntuacionIndividual .= '<p class=puntuacionGeneralPositiva>★</p>';                   
-                }
-                for($i = $puntuacionUsuario;  $i < 5; $i++){
-                    $puntuacionIndividual .= '<p class=puntuacionGeneralNegativa>★</p>';                   
-                }
-                $puntuacionIndividual .= '</div>';
-               $votar .= $puntuacionIndividual;
+                $puntuacionIndividual = $this->generarPuntuacionPelicula($puntuacionUsuario);
+                $votar .= <<<EOS
+                    <div class="tusEstrellas">
+                        $puntuacionIndividual
+                    </div>
+                 EOS;
             }
         }
         $votar .= '</div>';
