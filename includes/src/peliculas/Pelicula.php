@@ -72,7 +72,7 @@ class Pelicula{
         $fila = @mysqli_fetch_array($conn);
 
         if($fila["users"] != 0){
-            $this->puntuacion = $fila["suma"];
+            $this->puntuacion = round($fila["suma"]);
         }
         else{
             $this->puntuacion = 0;
