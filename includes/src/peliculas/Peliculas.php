@@ -108,33 +108,33 @@ class Peliculas extends Lista{
 
        $puntuacionPelicula = $this->generarPuntuacionPelicula($pelicula->getPuntuacion());
         
-        if($_SESSION['login'] == false){
-            $votar = '<h2 class="votoTexto2">Inicie sesion para puntuar</h2>';
-        }
-        else{
-            $votar = <<< EOS
+       $votar = <<< EOS
                     <div class="votar"> 
                         <p class="votoTexto"><b>Tu voto</b><p>
                         <br>
-                    <div class= "votoIndividual"> 
-            EOS;
-                
+                EOS;
+
+        if($_SESSION['login'] == false){
+            $votar .= '<h2 class="votoTexto2">Inicie sesion para puntuar</h2>';
+        }
+        else{
+            
+            $votar .= '<div class= "votoIndividual"> ';
             $puntuacionUsuario = $pelicula->votado($app->idUsuario()) ;
             if($puntuacionUsuario == 0){
-                $votar = <<< EOS
+                $votar .= <<< EOS
                     <form action="" method="post" id = "my_form">
                         <p class="clasificacion">
-                            <input id="radio1" type="radio" name="estrellas" value="5" ><!--
+                            <input id="radio1" type="radio" name="estrellas" value="5" onclick="javascript: submit()"><!--
                             --><label for="radio1">★</label><!--
-                            --><input id="radio2" type="radio" name="estrellas" value="4" ><!--
+                            --><input id="radio2" type="radio" name="estrellas" value="4" onclick="javascript: submit()"><!--
                             --><label for="radio2">★</label><!--
-                            --><input id="radio3" type="radio" name="estrellas" value="3" ><!--
+                            --><input id="radio3" type="radio" name="estrellas" value="3" onclick="javascript: submit()"><!--
                             --><label for="radio3">★</label><!--
-                            --><input id="radio4" type="radio" name="estrellas" value="2" ><!--
+                            --><input id="radio4" type="radio" name="estrellas" value="2" onclick="javascript: submit()"><!--
                             --><label for="radio4">★</label><!--
-                            --><input id="radio5" type="radio" name="estrellas" value="1" ><!--
+                            --><input id="radio5" type="radio" name="estrellas" value="1" onclick="javascript: submit()"><!--
                             --><label for="radio5">★</label>
-                            <button type="submit" class="buton_estrellas"name="puntuar">Puntuar</button>
                         </p>
 
                          
