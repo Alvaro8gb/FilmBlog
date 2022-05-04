@@ -57,6 +57,9 @@ CREATE TABLE `puntuaciones` (
   `idpelicula` int(11) NOT NULL,
   `idusuario` int(11) NOT NULL,
   `puntuacion` int(1) NOT NULL,
+  PRIMARY KEY (`idpelicula`,`idusuario`),
   KEY `idusuario` (`idusuario`),
-  PRIMARY KEY (`idpelicula`,`idusuario`)
+  KEY `idpelicula` (`idpelicula`),
+  CONSTRAINT `puntuaciones_ibfk_1` FOREIGN KEY (`idusuario`) REFERENCES `usuarios` (`idusuario`) ON DELETE CASCADE ON UPDATE NO ACTION,
+  CONSTRAINT `puntuaciones_ibfk_2` FOREIGN KEY (`idpelicula`) REFERENCES `peliculas` (`idpelicula`) ON DELETE CASCADE ON UPDATE NO ACTION
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
