@@ -13,7 +13,7 @@ function mensajesPeticionAnterior(){
             $contador++;
             $idMensaje = "mensaje{$contador}"; 
             $html .= <<<EOS
-            <input id="$idMensaje" type="checkbox">
+            <input id="$idMensaje" type="hidden">
             <div class="mensaje">
             <div class="contenido">$mensaje</div>
             </div>

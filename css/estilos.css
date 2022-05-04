@@ -25,7 +25,6 @@ footer{
 }
 
 body {
-	padding-top:50px;
 	background-color: rgb(61, 56, 56);
 	margin:0;
 	color:white;
@@ -36,9 +35,9 @@ input{
 }
 
 main{
-	margin:1%;
-	margin-bottom: 150px;
-	padding:0;
+	margin-top: 65px;
+	margin-bottom: 155px;
+	padding:1%;
 	text-align: justify;
 }
 #contact{
@@ -47,19 +46,17 @@ main{
 
 header{
 	position:relative;
-	margin: 1%;
+	margin: 2%;
 }
 
 html{
 	min-height: 100%;
 	position: relative;
-
 }
 
 .formulario {
 	padding-top: 20px;
 }
-
 
 
 
