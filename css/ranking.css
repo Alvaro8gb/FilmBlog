@@ -2,7 +2,9 @@
 #container_ranking{
     margin-top:60px;
 }
-
+#pos{
+  color:red;
+}
 #ranking{
     text-align: center; 
 }
